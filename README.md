@@ -32,6 +32,7 @@ Bug Bounty Hunting Toolsis a script to install the most popular tools used while
 - assetfinder
 - nuclei
 - wordlistgen
+- fuff
 
 This script also grabs the aliases created and published here:
 https://github.com/nahamsec/recon_profile
