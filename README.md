@@ -22,7 +22,8 @@ Bug Bounty Hunting Toolsis a script to install the most popular tools used while
 - Waybackurls
 - Httprobe
 - Seclists collection
-NEW ADD***
+
+# NEW TOOLS***
 - dalfox
 - XSStrike
 - hakrawler
