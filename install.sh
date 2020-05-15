@@ -18,6 +18,8 @@ sudo apt-get install -y git
 sudo apt-get install -y rename
 sudo apt-get install -y xargs
 
+mkdir ~/tools
+
 echo "installing bash_profile aliases from recon_profile"
 git clone https://github.com/nahamsec/recon_profile.git
 cd recon_profile
@@ -25,8 +27,6 @@ cat bash_profile >> ~/.bash_profile
 source ~/.bash_profile
 cd ~/tools/
 echo "done"
-
-
 
 #install go
 if [[ -z "$GOPATH" ]];then
@@ -38,8 +38,8 @@ select choice in "${choices[@]}"; do
                 yes)
 
 					echo "Installing Golang"
-					wget https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz
-					sudo tar -xvf go1.13.4.linux-amd64.tar.gz
+					wget https://dl.google.com/go/go1.14.3.linux-amd64.tar.gz
+					sudo tar -xvf go1.14.3.linux-amd64.tar.gz
 					sudo mv go /usr/local
 					export GOROOT=/usr/local/go
 					export GOPATH=$HOME/go
@@ -59,18 +59,26 @@ select choice in "${choices[@]}"; do
 	esac	
 done
 fi
+## ----------------------------------------------- TOOLS -------------------------------------------------------------- ##
+
 
 
 #Don't forget to set up AWS credentials!
+cd ~/tools/
 echo "Don't forget to set up AWS credentials!"
 apt install -y awscli
 echo "Don't forget to set up AWS credentials!"
 
-
+#install amass
+echo "Installing Amass"
+sudo snap install amass -y
+echo "done"
 
 #create a tools folder in ~/
-mkdir ~/tools
-cd ~/tools/
+
+echo "Installing wordlistgen"
+go get -u github.com/ameenmaali/wordlistgen
+echo "done"
 
 #install aquatone
 echo "Installing Aquatone"
@@ -96,12 +104,10 @@ pip install -r requirements.txt
 cd ~/tools/
 echo "done"
 
-
 echo "installing teh_s3_bucketeers"
 git clone https://github.com/tomdev/teh_s3_bucketeers.git
 cd ~/tools/
 echo "done"
-
 
 echo "installing wpscan"
 git clone https://github.com/wpscanteam/wpscan.git
@@ -153,6 +159,13 @@ make
 cd ~/tools/
 echo "done"
 
+echo "installing XSStrike"
+git clone https://github.com/s0md3v/XSStrike.git
+cd ~/tools/XSStrike
+pip install -r requirements.txt
+cd ~/tools/
+echo "done"
+
 echo "installing asnlookup"
 git clone https://github.com/yassineaboukir/asnlookup.git
 cd ~/tools/asnlookup
@@ -185,8 +198,40 @@ cat dns-Jhaddix.txt | head -n -14 > clean-jhaddix-dns.txt
 cd ~/tools/
 echo "done"
 
+echo "installing fuff" 
+go get github.com/ffuf/ffuf
+echo "done"
+
+echo "installing assetfinder" 
+go get -u github.com/tomnomnom/assetfinder
+echo "done"
+
+echo "installing nuclei" 
+go get -u -v github.com/projectdiscovery/nuclei/cmd/nuclei
+echo "done"
+
+echo "installing wuzz" 
+go get github.com/asciimoo/wuzz
+echo "done"
+
+echo "installing hakrawler" 
+go get github.com/hakluke/hakrawler
+echo "done"
+
+echo "installing ghidra"
+mdkir ~/tools/ghidra
+cd ~/tools/ghidra
+wget https://ghidra-sre.org/ghidra_9.1.2_PUBLIC_20200212.zip
+cd ~/tools/
+echo "done"
+
+echo "installing dalfox" 
+go get -u github.com/hahwul/dalfox
+echo "done"
 
 
+
+## -------------------------------------------------------------------------------------------------------------------- ##
 echo -e "\n\n\n\n\n\n\n\n\n\n\nDone! All tools are set up in ~/tools"
 ls -la
 echo "One last time: don't forget to set up AWS credentials in ~/.aws/!"
