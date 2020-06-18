@@ -21,10 +21,10 @@ sudo apt-get install -y xargs
 mkdir ~/tools
 
 echo "installing bash_profile aliases from recon_profile"
-git clone https://github.com/nahamsec/recon_profile.git
+git clone https://github.com/syr0x/recon_profile.git
 cd recon_profile
-cat bash_profile >> ~/.bash_profile
-source ~/.bash_profile
+cat bash_profile >> ~/.zshrc
+source ~/.zshrc
 cd ~/tools/
 echo "done"
 
@@ -44,9 +44,9 @@ select choice in "${choices[@]}"; do
 					export GOROOT=/usr/local/go
 					export GOPATH=$HOME/go
 					export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
-					echo 'export GOROOT=/usr/local/go' >> ~/.bash_profile
-					echo 'export GOPATH=$HOME/go'	>> ~/.bash_profile			
-					echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.bash_profile	
+					echo 'export GOROOT=/usr/local/go' >> ~/.zshrc
+					echo 'export GOPATH=$HOME/go'	>> ~/.zshrc			
+					echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.zshrc	
 					source ~/.bash_profile
 					sleep 1
 					break
